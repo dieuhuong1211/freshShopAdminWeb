@@ -164,7 +164,8 @@ exports.updateClient = async (req,res)=> {
 }
 
 exports.lockClient = async (req,res)=> {
-     await clientService.lockClient(req.body.client_id);
+    
+    await clientService.lockClient(req.body.client_id);
         res.redirect('/client/setting');
 }
 
