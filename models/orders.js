@@ -8,7 +8,8 @@ module.exports = function(sequelize, DataTypes) {
     },
     ORDER_DATE: {
       type: DataTypes.DATE,
-      allowNull: true
+      allowNull: false,
+      defaultValue: Sequelize.Sequelize.literal('CURRENT_TIMESTAMP')
     },
     ADDRESS: {
       type: DataTypes.STRING(100),

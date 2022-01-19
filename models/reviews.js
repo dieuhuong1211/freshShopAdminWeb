@@ -20,7 +20,7 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
     REVIEW: {
-      type: DataTypes.STRING(200),
+      type: DataTypes.STRING(500),
       allowNull: true
     },
     REVIEWDATE: {
