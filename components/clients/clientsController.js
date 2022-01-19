@@ -169,7 +169,7 @@ exports.lockClient = async (req,res)=> {
 }
 
 exports.unlockClient = async (req,res)=> {
-    await clientService.unlockCLient(req.body.client_id);
+    await clientService.unlockClient(req.body.client_id);
        res.redirect('/client/setting');
 }
 
