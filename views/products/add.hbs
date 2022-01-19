@@ -1,0 +1,114 @@
+<div class="main-panel">
+  <div class="content-wrapper">
+    <div class="page-header">
+      <h3 class="page-title">Product</h3>
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="#">Product Detail</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Edit </li>
+        </ol>
+      </nav>
+    </div>
+    <div class="row">
+      <div class="col-12 grid-margin">
+        <div class="card">
+          <div class="card-body">
+            <form class="form-sample" action="/product/setting/detail/add" method="POST"  enctype="multipart/form-data">
+              <p class="card-description">Product information</p>
+              <div class="row">
+                <div class="col-md-6 d-flex flex-column flex-col justify-content-between">
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Image</label>
+                    <div class="col-sm-9">
+                      <img src="/assets/images/products/product.png" class="review-image" style="border-radius:10px;" id="file-image" alt="image">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Upload Image</label>
+                    <div class="input-group col-sm-9">
+                      <input id="file-chosen" type="text" class="form-control file-upload-info" disabled="" placeholder="Upload Image">
+                      <span class="file-upload-browse btn btn-primary d-flex" style="border-top-left-radius:0;border-bottom-left-radius:0;">
+                          <label class="mb-0 d-flex align-items-center h-100 p-2" for="actual-btn">Choose File</label>
+                          <input type="file" class="form-control-file" id="actual-btn" name="uploaded_file" hidden/>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Product Name</label>
+                    <div class="col-sm-9">
+                      <input type="text" name="product_name" placeholder="Product Name" class="form-control" value="">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Product Type</label>
+                    <div class="col-sm-9">
+                      <select id="product_type" name="category" class="form-control" value="">
+                        {{#each categories}}
+                        <option value={{CATEGORY_ID}}>
+                          <label>{{CATEGORY_NAME}}</label>
+                        </option>
+                        {{/each}}
+                      </select>
+                    </div>
+                  </div>
+                  
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Description </label>
+                    <div class="col-sm-9">
+                      <!--<input type="text" name="description" placeholder="Description" class="form-control" value=""> -->
+                      <textarea name="description" class="form-control" placeholder="Description" value="" ></textarea>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Import staff</label>
+                    <div class="col-sm-9">
+                      <select id="staff" name="importer" class="form-control">
+                        {{#each accounts}}
+                        <option value={{ADMIN_ID}}>
+                          <label>{{LASTNAME}}</label>
+                        </option>
+                        {{/each}}
+                      </select>
+                    </div>
+                  </div>
+                   <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Importdate</label>
+                    <div class="col-sm-9">
+                      <input class="form-control" name="importdate" type="date" placeholder="dd/mm/yyyy" value="">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Sold</label>
+                    <div class="col-sm-9">
+                      <input type="number" name="sold" placeholder="Sold" class="form-control" value="">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Quantity</label>
+                    <div class="col-sm-9">
+                      <input type="number" name="quantity" placeholder="Quantity" class="form-control" value="">
+                    </div>
+                  </div>
+                   <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Cost</label>
+                    <div class="col-sm-9">
+                      <input type="number" name="cost" placeholder="Cost" class="form-control" value="">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary mr-2" name="product_id" value=""> Add </button>
+              <button class="btn btn-light" form="cancel-form">Cancel</button>
+            </form>
+            <form action="/product/setting" id="cancel-form" method="GET"></form>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+  </div>

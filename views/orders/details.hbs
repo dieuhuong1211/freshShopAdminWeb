@@ -1,0 +1,174 @@
+<div class="main-panel">
+  <div class="content-wrapper">
+    <div class="page-header">
+      <h3 class="page-title">Order</h3>
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="#">Order Detail</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Edit </li>
+        </ol>
+      </nav>
+    </div>
+    <div class="row">
+      <div class="col-12 grid-margin">
+        <div class="card">
+          <div class="card-body">
+            <form class="form-sample" id="update-form" action="/order/setting/detail/update" method="POST" enctype="multipart/form-data">
+              <p class="card-description">Order information</p>
+              <div class="row">
+                <div class="col">
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Order ID</label>
+                    <div class="col-sm-9">
+                      <input type="text" name="order_id" readonly="readonly" placeholder="Product ID" class="form-control" value="{{order.ORDER_ID}}">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Status</label>
+                    <div class="col-sm-9">
+                        {{#ifEquals order.DELIVE_RIES.DELIVERY_STATUS "FAILED"}}
+                                <label class="badge badge-danger" style="width: 90px;">failed</label>
+                        {{/ifEquals}}
+
+                        {{#ifEquals order.DELIVE_RIES.DELIVERY_STATUS "RETURN"}}
+                                <label class="badge badge-secondary" style="width: 90px;">return</label>
+                        {{/ifEquals}}
+                              
+                        {{#ifEquals order.DELIVE_RIES.DELIVERY_STATUS "SUCCEED"}}
+                                <label class="badge badge-success" style="width: 90px;">success</label>
+                        {{/ifEquals}}
+
+                        {{#ifEquals order.DELIVE_RIES.DELIVERY_STATUS "PACKAGING"}}
+                                <label class="badge badge-warning" style="width: 90px;">Packaging</label>
+                        {{/ifEquals}}
+
+                        {{#ifEquals order.DELIVE_RIES.DELIVERY_STATUS "DELIVERING"}}
+                               <label class="badge badge-info" style="width: 90px;">Delivering</label>
+                        {{/ifEquals}}
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                      <label class="col-sm-3 col-form-label">Order date</label>
+                      <div class="col-sm-9">
+                        <input class="form-control" name="orderdate" type="datetime-local" readonly="readonly"  value="{{formattime order.ORDER_DATE}}">
+                      </div>
+                    </div>
+                  
+                   <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Manager</label>
+                    <div class="col-sm-9">
+                      <select id="staff" name="manager" class="form-control" disabled="true">
+                        {{#each accounts}}
+                        <option value={{ADMIN_ID}}>
+                          <label>{{LASTNAME}}</label>
+                        </option>
+                        {{/each}}
+                      </select>
+                       <script type="text/javascript">
+                        var els = document.querySelector('#staff option[value={{order.MANAGER}}]');
+                        if (els) {
+                          els.selected = true;
+                        }
+                      </script>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label"> Customer Name </label>
+                    <div class="col-sm-9">
+                      <!--<input type="text" name="description" placeholder="Description" class="form-control" value=""> -->
+                       <input type="text" name="customer_name" readonly="readonly" placeholder="Customer Name" class="form-control" value="{{order.CLIENT.LASTNAME}}">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Address</label>
+                    <div class="col-sm-9">
+                       <input type="text" name="address" readonly="readonly" placeholder="Address" class="form-control" value="{{order.ADDRESS}}">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row mb-5">
+                 <div class="table-responsive">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>Image</th>
+                    <th>Product Name</th>
+                    <th>Product Type</th>
+                     <th>Importdate</th>
+                    <th>Quantity</th>
+                    <th>Cost</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {{#each orderDetails}}
+                  <tr>
+                    <td class="py-1">
+                      <img src="{{PRODUCT.IMAGE}}" alt="image">
+                    </td> 
+                    <td>{{PRODUCT.PRODUCT_NAME}}</td>
+                    <td>{{PRODUCT.CATEGORY_CATEGORY.CATEGORY_NAME}} </td>
+                    <td>{{format PRODUCT.IMPORTDATE}}</td>
+                    <td>{{QUANTITY}} </td>
+                    <td>{{PRODUCTPRICE}} $</td>
+                  </tr>
+                  {{/each}}
+                </tbody>
+              </table>
+              </div>
+              </div>
+               <div class="row">
+                 <div class="col-7"></div>
+                <div class="col-5">
+                  
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Payment method</label>
+                    <div class="col-sm-9">
+                      <input type="text" name="payment-method" readonly="readonly" placeholder="Payment Method" class="form-control" value="{{order.BILL.PAYMENT}}">
+                    </div>
+                  </div>
+                   <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Total Bill</label>
+                    <div class="col-sm-9">
+                      <input type="text" name="bill" readonly="readonly" placeholder="Bill" class="form-control" value="{{totalBill}} $">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Tax</label>
+                    <div class="col-sm-9">
+                      <input type="text" name="tax" readonly="readonly" placeholder="Tax" class="form-control" value="{{order.BILL.TAX}} $">
+                    </div>
+                  </div>
+                   <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Shipping cost</label>
+                    <div class="col-sm-9">
+                      <input type="text" name="Shipping cost" readonly="readonly" placeholder="Shipping cost" class="form-control" value="{{order.BILL.SHIPPING_COST}} $">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Discount</label>
+                    <div class="col-sm-9">
+                      <input type="text" name="discount" readonly="readonly" placeholder="Discount" class="form-control" value="{{order.BILL.DISCOUNT}} $">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Payment</label>
+                    <div class="col-sm-9">
+                      <input type="text" name="payment" readonly="readonly" placeholder="Payment" class="form-control" value="{{payment}} $">
+                    </div>
+                  </div>
+                </div>
+              </div>
+               <button type="submit" class="btn btn-primary mr-2" name="order_id" form="delete-form" value="{{order.ORDER_ID}}"> Delete </button>
+              <button  type="submit" class="btn btn-light" form="cancel-form">Cancel</button>
+            </form>
+            <form action="/order/setting/detail/delete" id="delete-form" method="POST">
+            </form>
+            <form action="/order/setting" id="cancel-form" method="GET">
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </div>

@@ -1,0 +1,122 @@
+<div class="main-panel">
+          <div class="content-wrapper">
+            <div class="page-header">
+              <h3 class="page-title">Client Account</h3>
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="#">Client Account</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Edit </li>
+                </ol>
+              </nav>
+            </div>
+            <div class="row">
+              <div class="col-12 grid-margin">
+                <div class="card">
+                  <div class="card-body">
+                    <form class="form-sample" id="update-form" action="/client/setting/detail/update" method="POST" enctype="multipart/form-data">
+                      <p class="card-description">Client Account Infomation</p>
+                      <div class="row">
+                          <div class="col-md-6 d-flex flex-column flex-col justify-content-between">
+                              <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Image</label>
+                                <div class="col-sm-9">
+                                    <img src="{{client.IMAGE}}" class="review-image" style="border-radius:10px;" id="file-image" alt="image">
+                                </div>
+                              </div>
+                              <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Upload Image</label>
+                                <div class="input-group col-sm-9">
+                                    <input id="file-chosen" type="text" class="form-control file-upload-info" disabled="" placeholder="Upload Image">
+                                    <span class="file-upload-browse btn btn-primary d-flex" style="border-top-left-radius:0;border-bottom-left-radius:0;">
+                                        <label class="mb-0 d-flex align-items-center h-100 p-2" for="actual-btn">Choose File</label>
+                                        <input type="file" class="form-control-file" id="actual-btn" name="uploaded_newfile" hidden/>
+                                    </span>
+                                  </div>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group row">
+                                  <label class="col-sm-3 col-form-label">First Name</label>
+                                  <div class="col-sm-9">
+                                    
+                                    <input type="text" name="firstname" placeholder="First Name" class="form-control" value="{{client.FIRSTNAME}}">
+                                  </div>
+                                </div>
+                                <div class="form-group row">
+                                  <label class="col-sm-3 col-form-label">Last Name</label>
+                                  <div class="col-sm-9">
+                                    <input type="text" name="lastname" placeholder="Last Name" class="form-control" value="{{client.LASTNAME}}">
+                                  </div>
+                                </div>
+                                <div class="form-group row">
+                                  <label class="col-sm-3 col-form-label">Phone Number</label>
+                                  <div class="col-sm-9">
+                                    <input type="text" name="phone" placeholder="Phone Number" class="form-control" value="{{client.PHONE}}">
+                                  </div>
+                                </div>
+                                <div class="form-group row">
+                                  <label class="col-sm-3 col-form-label">Email Address</label>
+                                  <div class="col-sm-9">
+                                    <input type="email" name="email" placeholder="Email" class="form-control" value="{{client.EMAIL}}">
+                                  </div>
+                                </div>
+                                 <div class="form-group row">
+                                      <label class="col-sm-3 col-form-label">Gender</label>
+                                      <div class="col-sm-9">
+                                        <select id="gender" name="gender" class="form-control">
+                                          <option value="Male" >Male</option>
+                                          <option Value="Female">Female</option>
+                                        </select>
+                                      </div>
+                                      <script type="text/javascript">
+                                        var els = document.querySelector('#gender option[value={{client.GENDER}}]');
+                                        if (els) {
+                                          els.selected = true;
+                                        }
+                                      </script>
+                                  </div>
+                                  <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">Date of Birth</label>
+                                    <div class="col-sm-9">
+                                      <input class="form-control" type="date" name="dateofbirth" placeholder="dd/mm/yyyy" value = {{client.DOB}}>
+                                    </div>
+                                  </div>
+                                   <div class="form-group row">
+                                      <label class="col-sm-3 col-form-label">Password</label>
+                                      <div class="col-sm-9">
+                                        <input class="form-control" name="password" type="password" placeholder="Password" value="{{client.PASS}}">
+                                      </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">Confirm Password</label>
+                                        <div class="col-sm-9">
+                                          <input class="form-control" name="confirm password" type="password" placeholder="Confirm Password">
+                                        </div>
+                                     </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary mr-2" name="client_id" value="{{client.CLIENT_ID}}" form="update-form" > Update </button>
+                       
+                        {{#ifEquals isLockable "1"}}
+                            {{#ifEquals client.ISLOCK "0"}}
+                                  <button type="submit" class="btn btn-primary mr-2" name="client_id" value="{{client.CLIENT_ID}}" form="lock-form"> Lock This Account </button>
+                            {{/ifEquals}}
+                            {{#ifEquals client.ISLOCK "1"}}
+                                  <button type="submit" class="btn btn-primary mr-2" name="client_id" value="{{client.CLIENT_ID}}" form="unlock-form">  Unlock This Account </button>
+                            {{/ifEquals}}
+                        {{/ifEquals}}
+                               <button type="submit" class="btn btn-primary mr-2" name="client_id" value="{{client.CLIENT_ID}}" form="delete-form" > Delete </button>
+                              <button class="btn btn-light" form="update-form">Cancel</button>
+                               
+                    </form>
+                    <form action="/client/setting/detail/lock" id="lock-form" method="POST"> </form>
+                    <form action="/client/setting/detail/unlock" id="unlock-form" method="POST"> </form>
+                    <form action="/client/setting/detail/delete" id="delete-form" method="POST"> </form>
+                  </div>
+                </div>
+              </div>
+              
+              
+            </div>
+          </div>
+  

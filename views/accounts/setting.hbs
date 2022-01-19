@@ -1,0 +1,77 @@
+<div class="main-panel">
+
+  <div class="content-wrapper">
+    <div class="page-header">
+      <h3 class="page-title">Accounts Setting</h3>
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="#">User Accounts</a></li>
+          <li class="breadcrumb-item active" aria-current="page"> Accounts Setting </li>
+        </ol>
+      </nav>
+    </div>
+    <div class="row">
+      <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <p class="card-description"> page {{currentPage}} </p>
+            </p>
+            <div class="table-responsive">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>Avatar</th>
+                    <th>Full name</th>
+                    <th>User</th>
+                    <th>Email</th>
+                    <th>Gender</th>
+                    <th>Date Of Birth</th>
+                    <th>Detail</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {{#each accounts}}
+                  <tr>
+                    <td class="py-1">
+                      <img src="{{IMAGE}}" alt="image">
+                    </td>
+                    <td>{{FIRSTNAME}}</td>
+                    <td>{{USERNAME}}</td>
+                    <td>{{EMAIL}}</td>
+                    <td>{{GENDER}}</td>
+                    <td>{{format DOB}}</td>
+                    <th>
+                      <button type="submit" class="btn btn-primary mr-2 p-0">
+                        <a class="text-decoration-none p-4" href="/account/setting/detail?account_id={{ADMIN_ID}}"> Detail </a>
+                      </button>
+                    </th>
+                  </tr>
+                  {{/each}}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex justify-content-between align-items-stretch">
+      {{#if pageArray }}
+      <div class="mr-auto">
+        <nav aria-label="Page navigation example">
+          <ul class="pagination mb-0">
+            <li class="page-item"><a class="page-link" href="?page=previous-{{currentPage}}">Previous</a></li>
+             {{#each pageArray }}  
+            <li class="page-item"><a class="page-link" href="?page={{this.PAGE}}">{{this.PAGE}}</a></li>
+            {{/each}}
+            <li class="page-item"><a class="page-link" href="?page=next-{{currentPage}}">Next</a></li>
+          </ul>
+        </nav>
+      </div>
+       {{/if}}
+      <button type="submit" class="btn btn-primary p-0">
+        <a class="p-2" href="/account/setting/add"> Add New Account</a>
+      </button>
+    </div>
+
+  </div>
+  </div>

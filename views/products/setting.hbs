@@ -1,0 +1,108 @@
+<div class="main-panel">
+  <div class="content-wrapper">
+    <div class="page-header">
+      <h3 class="page-title">Products Setting</h3>
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="#">Products</a></li>
+          <li class="breadcrumb-item active" aria-current="page"> Products Setting </li>
+        </ol>
+      </nav>
+    </div>
+    <div class="row">
+      <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <p class="card-description"> Page {{currentPage}} </p>
+            </p>
+            <form class="form-sample" action="/product/setting/filter" method="POST">
+              <div class="row">
+                <label class="col-sm-3 col-form-label">Product Name</label>
+                <div class="col-sm-9">
+                  <input type="text" name="product_name" placeholder="Product Name" class="form-control" value="">
+                </div>
+                <label class="col-sm-3 col-form-label">Product Type</label>
+                <div class="col-sm-9">
+                  <input type="text" name="product_type" placeholder="Product Type" class="form-control" value="">
+                </div>
+                <label class="col-sm-3 col-form-label">Sold</label>
+                <div class="col-sm-9">
+                  <input type="number" name="sold" placeholder="Sold" class="form-control" value="">
+                </div>
+                <label class="col-sm-3 col-form-label">Quantity</label>
+                <div class="col-sm-9">
+                  <input type="number" name="quantity" placeholder="Quantity" class="form-control" value="">
+                </div>
+                <label class="col-sm-3 col-form-label">Cost</label>
+                <div class="col-sm-9">
+                  <input type="text" name="cost" placeholder="Cost" class="form-control" value="">
+                </div>
+                <div class="col-12">
+                  <button type="submit" class="btn btn-primary float-right m-3" name="product_id" value=""> Search
+                  </button>
+                </div>
+              </div>
+            </form>
+            <div class="table-responsive">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>Image</th>
+                    <th>Product Name</th>
+                    <th>Product Type</th>
+                    <th>Quantity</th>
+                    <th>Sold</th>
+                    <th>Cost</th>
+                    <th>Importdate</th>
+                    <th>Importer</th>
+                    <th>Detail</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {{#each products}}
+                  <tr>
+                    <td class="py-1">
+                      <img src="{{IMAGE}}" alt="image">
+                    </td>
+                    <td>{{PRODUCT_NAME}}</td>
+                    <td>{{CATEGORY_CATEGORY.CATEGORY_NAME}} </td>
+                    <td>{{QUANTITY}} </td>
+                     <td>{{SOLD}} </td>
+                    <td>{{PRICE}}</td>
+                    <td>{{format IMPORTDATE}}</td>
+                    <td>{{IMPORTER_ADMIN.LASTNAME}} </td>
+                    <th>
+                      <button type="submit" class="btn btn-primary mr-2 p-0">
+                        <a class="text-decoration-none p-4" href="/product/setting/detail?product_id={{PRODUCT_ID}}"> Detail </a>
+                      </button>
+                    </th>
+                  </tr>
+                  {{/each}}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex justify-content-between align-items-stretch">
+      {{#if pageArray }}
+      <div class="mr-auto">
+        <nav aria-label="Page navigation example">
+          <ul class="pagination mb-0">
+            <li class="page-item"><a class="page-link" href="?page=previous-{{currentPage}}">Previous</a></li>
+             {{#each pageArray }}  
+            <li class="page-item"><a class="page-link" href="?page={{this.PAGE}}">{{this.PAGE}}</a></li>
+            {{/each}}
+            <li class="page-item"><a class="page-link" href="?page=next-{{currentPage}}">Next</a></li>
+          </ul>
+        </nav>
+      </div>
+       {{/if}}
+      <button type="submit" class="btn btn-primary p-0">
+        <a class="p-4" href="/product/setting/add"> Add New Product</a>
+      </button>
+    </div>
+
+  </div>
+  </div>

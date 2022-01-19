@@ -1,0 +1,104 @@
+<div class="main-panel">
+  <div class="content-wrapper">
+    <div class="page-header">
+      <h3 class="page-title">Create New Client Account</h3>
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="#">Client Accounts</a></li>
+          <li class="breadcrumb-item active" aria-current="page"> Create New Client Account </li>
+        </ol>
+      </nav>
+    </div>
+    <div class="row">
+      <div class="col-12 grid-margin">
+        <div class="card">
+          <div class="card-body">
+            <form class="form-sample" action="/client/setting/detail/add" method="POST" enctype="multipart/form-data">
+              <p class="card-description">Personal Infomation</p>
+              <div class="row">
+                <div class="col-md-6 d-flex flex-column flex-col justify-content-between">
+                              <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Image</label>
+                                <div class="col-sm-9">
+                                    <img src="/assets/images/clients/client.png" class="review-image" style="border-radius:10px;" id="file-image" alt="image">
+                                </div>
+                              </div>
+                              <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Upload Image</label>
+                                <div class="input-group col-sm-9">
+                                    <input id="file-chosen" type="text" class="form-control file-upload-info" disabled="" placeholder="Upload Image">
+                                    <span class="file-upload-browse btn btn-primary d-flex" style="border-top-left-radius:0;border-bottom-left-radius:0;">
+                                        <label class="mb-0 d-flex align-items-center h-100 p-2" for="actual-btn">Choose File</label>
+                                        <input type="file" class="form-control-file" id="actual-btn" name="uploaded_file" hidden/>
+                                    </span>
+                                  </div>
+                              </div>
+                            </div>
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">First Name</label>
+                    <div class="col-sm-9">
+                      <input type="text" name="firstname" placeholder="First Name" class="form-control">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Last Name</label>
+                    <div class="col-sm-9">
+                      <input type="text" name="lastname" placeholder="Last Name" class="form-control">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Phone Number</label>
+                    <div class="col-sm-9">
+                      <input type="text" name="phone" placeholder="Phone Number" class="form-control">
+                    </div>
+                  </div>
+                   <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Email Address</label>
+                    <div class="col-sm-9">
+                      <input type="email" name="email" placeholder="Email" class="form-control">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Gender</label>
+                    <div class="col-sm-9">
+                      <select name="gender" class="form-control">
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                      </select>
+                    </div>
+                  </div>
+                   <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Date of Birth</label>
+                    <div class="col-sm-9">
+                      <input class="form-control" name="dateofbirth" type="date" placeholder="dd/mm/yyyy">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Password</label>
+                    <div class="col-sm-9">
+                      <input class="form-control" name="password" type="password" placeholder="Password">
+                    </div>
+                  </div>
+                   <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Confirm Password</label>
+                    <div class="col-sm-9">
+                      <input class="form-control" type="password" placeholder="Confirm Password">
+                    </div>
+                  </div>
+                </div>
+                
+     
+                
+              </div>
+              <button type="submit" class="btn btn-primary mr-2" name="client_id" value=""> Submit </button>
+             <button class="btn btn-light" form="cancel-form">Cancel</button>
+            </form>
+             <form action="/client/setting" id="cancel-form" method="GET"></form>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
